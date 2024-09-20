@@ -171,6 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedOption.querySelector("input").checked = true;
       }
     }
+
+    // Disable next button if no answer is selected
+    updateNextButtonState();
   }
 
   function getSelectedAnswer() {
@@ -182,10 +185,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function prepareDataForChatGPT() {
     const questions = gender === "women" ? womenQuestions : menQuestions;
-    return questions.map((question, index) => ({
-      question: question.question,
-      answer: userAnswers[index] || "Not answered",
-    }));
+    return {
+      gender: gender,
+      answers: questions.map((question, index) => ({
+        question: question.question,
+        answer: userAnswers[index] || "Not answered",
+      })),
+    };
+  }
+
+  function updateNextButtonState() {
+    const selectedAnswer = getSelectedAnswer();
+    nextButton.disabled = !selectedAnswer;
   }
 
   startButtons.forEach((button) => {
@@ -197,6 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
       answerOptions.forEach((opt) => opt.classList.remove("selected"));
       option.classList.add("selected");
       option.querySelector("input").checked = true;
+      updateNextButtonState();
     });
   });
 
@@ -219,16 +231,16 @@ document.addEventListener("DOMContentLoaded", () => {
       // Quiz completed
       const quizData = prepareDataForChatGPT();
       console.log("Quiz completed! Data for ChatGPT:", quizData);
-      // Here you would typically send this data to your server or directly to ChatGPT
       switchScreen("screen2", "screen3");
-      // You can add your logic here to send the data to ChatGPT or your backend
       setTimeout(() => {
         switchScreen("screen3", "screen4");
-
         console.log("Simulated ChatGPT processing complete");
       }, 3000);
     }
   });
+
+  // Initial call to set the next button state
+  updateNextButtonState();
 
   presentationBtn.addEventListener("click", () => {
     switchScreen("screen4", "screen1");
