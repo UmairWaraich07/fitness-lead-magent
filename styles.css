@@ -403,18 +403,13 @@ select {
   text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .quiz-card h1 {
     font-size: 1.25rem;
   }
 
   .progress-bar {
     margin-bottom: 20px;
-  }
-
-  .question h2 {
-    font-size: 1rem;
-    margin-bottom: 3px;
   }
 
   .subtitle {
