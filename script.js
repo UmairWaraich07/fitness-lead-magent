@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevButton = document.querySelector(".nav-button.prev");
   const nextButton = document.querySelector(".nav-button.next");
   const questionCountElement = document.querySelector(".question-count");
+  const presentationBtn = document.getElementById("presentationBtn");
 
   let currentQuestion = 0;
   let gender = "";
@@ -227,5 +228,9 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Simulated ChatGPT processing complete");
       }, 3000);
     }
+  });
+
+  presentationBtn.addEventListener("click", () => {
+    switchScreen("screen4", "screen1");
   });
 });
