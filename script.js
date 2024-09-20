@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toScreen.classList.add("screen-active");
         toScreen.classList.remove("entering"); // Clean up the entering class
       }, 20); // Small delay to ensure class transition is applied
-    }, 300); // Matches the fade-out duration (0.2s)
+    }, 300); // Matches the fade-out duration
   }
 
   function startQuiz(selectedGender) {
@@ -219,17 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const quizData = prepareDataForChatGPT();
       console.log("Quiz completed! Data for ChatGPT:", quizData);
       // Here you would typically send this data to your server or directly to ChatGPT
-      //   screen1.classList.add("hidden");
-      //   screen2.classList.add("hidden");
-      //   screen3.classList.remove("hidden");
       switchScreen("screen2", "screen3");
       // You can add your logic here to send the data to ChatGPT or your backend
       setTimeout(() => {
-        // After 5 seconds, hide all screens and show screen 4
-        // screen1.classList.add("hidden");
-        // screen2.classList.add("hidden");
-        // screen3.classList.add("hidden");
-        // screen4.classList.remove("hidden");
         switchScreen("screen3", "screen4");
 
         console.log("Simulated ChatGPT processing complete");
